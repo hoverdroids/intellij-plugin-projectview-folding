@@ -1,8 +1,9 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.spragucm.intellijpluginprojectviewfolding</id>
-    <name>intellij-plugin-projectview-folding</name>
+    <name>Project View Folding (Hiding)</name>
     <vendor>spragucm</vendor>
+    <description>Project View Folding allows you to easily fold, aka show and hide, files and folders from the project view while allowing IntelliJ to index the files.</description>
 
     <depends>com.intellij.modules.platform</depends>
 
