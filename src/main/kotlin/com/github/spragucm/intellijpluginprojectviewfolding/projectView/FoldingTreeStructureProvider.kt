@@ -55,8 +55,8 @@ class FoldingTreeStructureProvider(project: Project): TreeStructureProvider {
 
         return when {
             !state.foldingEnabled -> children
-            parent !is PsiDirectoryNode -> children
-            !isModule(parent, project) -> children
+//            parent !is PsiDirectoryNode -> children
+//            !isModule(parent, project) -> children
             else -> children.match().toSet().let { matched ->
                 when {
                     state.hideAllGroups -> children - matched
