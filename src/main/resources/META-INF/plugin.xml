@@ -8,12 +8,38 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.spragucm.intellijpluginprojectviewfolding.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.spragucm.intellijpluginprojectviewfolding.services.MyProjectService"/>
+        <projectConfigurable
+            id="ProjectViewFoldingConfigurable"
+            groupId="tools"
+            key="projectViewFolding.name"
+            bundle="messages.ProjectViewFoldingBundle"
+            instance="com.github.spragucm.intellijpluginprojectviewfolding.settings.ProjectViewFoldingConfigurable"
+        />
+
+        <projectService serviceImplementation="com.github.spragucm.intellijpluginprojectviewfolding.settings.ProjectSettings"/>
+
+        <treeStructureProvider
+            implementation="com.github.spragucm.intellijpluginprojectviewfolding.projectView.FoldingTreeStructureProvider"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.spragucm.intellijpluginprojectviewfolding.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+
+        <action id="ProjectView.FoldRootFiles"
+                class="com.github.spragucm.intellijpluginprojectviewfolding.actionSystem.RootFilesAction"
+                text="Fold Root Files"
+                description="Action that lets you fold the files located in the root of your project">
+            <add-to-group group-id="ProjectView.ToolWindow.SecondaryActions"
+                          relative-to-action="ProjectView.FoldIgnoredFiles"
+                          anchor="before"/>
+        </action>
+
+        <action id="ProjectView.FoldIgnoredFiles"
+                class="com.github.spragucm.intellijpluginprojectviewfolding.actionSystem.IgnoredFilesAction"
+                text="Fold Ignored Files"
+                description="Action that lets you fold the ignored files">
+            <add-to-group group-id="ProjectView.ToolWindow.SecondaryActions"
+                          relative-to-action="ProjectView.FlattenPackages"
+                          anchor="before"/>
+        </action>
+    </actions>
 </idea-plugin>
